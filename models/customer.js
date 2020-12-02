@@ -54,16 +54,8 @@ class Customer {
 	}
 
 	/** get full name of customer instance */
-	async fullName() {
-		const results = await db.query(
-			`SELECT first_name, last_name
-      FROM customers
-      WHERE id=$1
-      RETURNING first_name, last_name`,
-			[this.id]
-		);
-		const customer = results.rows[0];
-		return [customer.first_name, customer.last_name].join(" ");
+	fullName() {
+		return [this.firstName, this.lastName].join(" ");
 	}
 
 	/** get all reservations for this customer. */
